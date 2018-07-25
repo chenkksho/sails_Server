@@ -2,6 +2,8 @@
     // 本文件为vsCode调试node服务的配置文件，使用插件“Node Debug”
     // node启动  node app.js
     // nodemon启动：需要安装nodemon     npm install -g nodemon
+    //-----------------------------------
+
     // 使用 IntelliSense 了解相关属性。 
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
