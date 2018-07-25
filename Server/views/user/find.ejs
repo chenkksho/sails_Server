@@ -1,0 +1,80 @@
+<h1>Find</h1>
+<form action="/user/find" method="POST">
+  <table>
+    <tr><td>Username: </td><td><input name="username" value='<%= username %>' type="text"/></td></tr>
+    <tr><td>Sex: </td><td><input name="sex" value='<%= sex %>' type="text"/></td></tr>
+  </table>
+  <tr><input type="submit" value="搜索"/></tr>
+</form>
+
+
+<h1>Listing users</h1>
+<form id="form1" action="/user/find" method="POST">
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>password</th>
+      <th>tel</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>updatedAt</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% _.each(model, function (user) { %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.password %></td>
+      <td><%= user.tel %> </td>
+      <td><%= user.sex == 1 ? '男' : '女' %> </td>
+      <td><%= user.age %> </td>
+      <td><%= user.updatedAt.toLocaleDateString() + " " + user.updatedAt.toLocaleTimeString() %> </td>
+      <td><a href="/user/show/<%= user.id %>">Show</a></td>
+      <td><a href="/user/edit/<%= user.id %>">Edit</a></td>
+      <td><a href="/user/destroy/<%= user.id %>">Delete</a></td>
+      <% }) %>
+    </tr>
+  </table>
+  <% if(page) {%>
+  <input name="allCount" value="<%= page.allCount %>" type="hidden" />
+  <input name="nowPage" value="<%= page.nowPage %>" type="hidden" />
+  <input name="pageCount" value="<%= page.pageCount %>" type="hidden" />
+  <input name="NumOfPage" value="<%= page.NumOfPage %>" type="hidden" />
+  <% } %>
+  <input name="sex" value="<%= sex %>" type="hidden" />
+  <input name="username" value="<%= username %>" type="hidden" />
+  <span>第 <%= page.nowPage %> 页 | </span>
+  <span>共 <%= page.NumOfPage %> 页 | </span>
+  <span>共 <%= page.allCount %> 条 | </span>
+  <span><%= page.pageCount %>
+    条 / 页
+  </span>
+  <input type="button" value="上一页" onclick="last()"   <%if(page && page.nowPage <= 1) {%> disabled="disabled" <%}%>/>
+  <input type="button" value="下一页" onclick="next()"   <%if(page && page.nowPage >= page.NumOfPage) {%> disabled="disabled" <%}%>/>
+
+</form>
+<br />
+
+<a href="/user/new">New User</a>
+
+<script type="application/javascript">
+  function last(){
+    var page = document.getElementsByName('nowPage')[0].value;
+    if(page){
+      document.getElementsByName('nowPage')[0].value = --page;
+    }
+    var form = document.getElementById('form1');
+    form.submit();
+  }
+
+  function next(){
+    var page = document.getElementsByName('nowPage')[0].value;
+    if(page){
+      document.getElementsByName('nowPage')[0].value = ++page;
+    }
+    var form = document.getElementById('form1');
+    form.submit();
+  }
+
+</script>

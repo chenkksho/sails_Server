@@ -1,0 +1,9 @@
+*.suo
+dist
+.idea
+bower_components
+node_modules
+.tmp
+*.log
+server/upload
+.svn
