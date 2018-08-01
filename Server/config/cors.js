@@ -47,7 +47,7 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-   origin: 'http://localhost:8000,http://localhost:8091,http://localhost:16648,http://localhost:63342,http://localhost:10080,http://localhost:8989,http://localhost:3004,http://192.168.1.163:8100,http://localhost:8081',
+   origin: 'http://localhost:9090',
 
   /***************************************************************************
   *                                                                          *
@@ -73,6 +73,6 @@ module.exports.cors = {
   *                                                                          *
   ***************************************************************************/
 
-     headers: 'content-type'
+     headers: 'content-type,Tescomm_Access_Token'
 
 };
